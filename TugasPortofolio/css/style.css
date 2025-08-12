@@ -1,0 +1,588 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Variabel CSS untuk Warna Default (Mode Terang) */
+:root {
+    --primary-color: #3498db; /* Biru cerah */
+    --secondary-color: #2c3e50; /* Biru tua */
+    --text-color: #333;
+    --light-text-color: #555;
+    --bg-color: #f8f8f8;
+    --white: #fff;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+}
+
+/* Variabel CSS untuk Warna Mode Gelap */
+.dark-mode {
+    --primary-color: #9b59b6; /* Ungu gelap */
+    --secondary-color: #f1c40f; /* Kuning cerah */
+    --text-color: #ecf0f1; /* Teks putih keabuan */
+    --light-text-color: #bdc3c7; /* Teks abu-abu muda */
+    --bg-color: #2c3e50; /* Latar belakang biru tua */
+    --white: #34495e; /* Elemen latar belakang gelap */
+}
+
+/* Reset CSS & Umum */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    transition: background-color var(--transition-speed), color var(--transition-speed), transform var(--transition-speed);
+}
+
+html {
+    font-size: 62.5%; /* 1rem = 10px */
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+section {
+    padding: 8rem 0;
+} 
+.text-content {
+    
+}
+
+.heading {
+    text-align: center;
+    font-size: 4rem;
+    color: var(--secondary-color);
+    margin-bottom: 5rem;
+    position: relative;
+}
+
+.heading::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+/* Tombol Umum */
+.btn {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: var(--primary-color);
+    color: var(--white);
+    font-size: 1.7rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition-speed);
+}
+
+.btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+.btn-small {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    background: var(--primary-color);
+    color: var(--white);
+    font-size: 1.5rem;
+    border-radius: 5px;
+    transition: var(--transition-speed);
+    margin-top: 1rem;
+}
+
+.btn-small:hover {
+    background: var(--secondary-color);
+}
+
+/* Header & Navigasi */
+.header {
+    background: var(--white);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 4rem; /* Padding yang lebih baik */
+}
+
+.header .logo {
+    font-size: 2.8rem; /* Ukuran font sedikit lebih besar */
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-right: auto; /* Mendorong semua elemen lain ke kanan */
+}
+
+.header .navbar {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+    margin-right: 2rem; /* Jarak antara navbar dan tombol mode gelap */
+}
+
+.header .navbar a {
+    position: relative; /* Diperlukan untuk efek garis bawah */
+    font-size: 1.8rem;
+    color: var(--light-text-color);
+    transition: color var(--transition-speed);
+}
+
+.header .navbar a:hover,
+.header .navbar a.active {
+    color: var(--primary-color);
+}
+
+/* Efek Garis Bawah di Navbar */
+.header .navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Posisikan di bawah teks */
+    left: 0;
+    width: 0; /* Lebar awal 0 */
+    height: 3px;
+    background: var(--primary-color);
+    transition: width var(--transition-speed); /* Animasi lebar */
+}
+
+.header .navbar a:hover::after,
+.header .navbar a.active::after {
+    width: 100%; /* Lebar penuh saat hover atau aktif */
+}
+
+#menu-btn {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    cursor: pointer;
+    display: none; /* Sembunyikan di desktop */
+}
+
+/* Tombol Mode Gelap */
+#dark-mode-toggle {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+
+/* Bagian Beranda (Home) */
+.home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 8rem; /* Offset untuk header fixed */
+    background: linear-gradient(rgba(248, 248, 248, 0.8), rgba(248, 248, 248, 0.8)), url('images/gitar_bg.jpeg') no-repeat center center/cover;
+    background-attachment: fixed; /* Efek Parallax */
+}
+
+.dark-mode .home {
+    background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('images/gitar_bg.jpeg') no-repeat center center/cover;
+    background-attachment: fixed;
+}
+
+
+.home .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    flex-wrap: wrap-reverse; /* Untuk mobile, gambar di atas teks */
+}
+
+.home .content .text-content {
+    flex: 1 1 50rem;
+}
+
+.image-content{
+    padding: 5rem;
+}
+
+.home .content .text-content h3 {
+    font-size: 3rem;
+    color: var(--light-text-color);
+}
+
+.home .content .text-content h1 {
+    font-size: 6rem;
+    color: var(--secondary-color);
+    line-height: 1.2;
+    margin: 1rem 0;
+}
+
+.home .content .text-content p {
+    font-size: 1.8rem;
+    color: var(--light-text-color);
+    max-width: 60rem;
+}
+
+/* Menyesuaikan margin-top untuk tombol "Lihat Proyek Saya" di bagian Home */
+.home .content .text-content .btn {
+    margin-top: 4rem; /* Nilai yang lebih besar untuk mendorong tombol ke bawah */
+}
+
+
+.home .content .image-content {
+    flex: 1 1 30rem;
+    text-align: center;
+}
+
+.home .content .image-content img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 50%; /* Membuat foto bulat */
+    box-shadow: 0 0 0 10px rgba(var(--primary-color), 0.2), 0 0 0 20px rgba(var(--primary-color), 0.1);
+    animation: floatImage 4s ease-in-out infinite;
+}
+
+@keyframes floatImage {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+/* Untuk efek typing */
+.typing-text {
+    border-right: .2rem solid var(--primary-color);
+    padding-right: 1rem;
+    animation: blinkCaret .75s step-end infinite;
+    font-size: 6rem;
+    color: var(--secondary-color);
+}
+
+@keyframes blinkCaret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary-color) }
+}
+
+
+/* Bagian Tentang Saya (About) */
+.about .row {
+    display: flex;
+    align-items: flex-start; /* PERBAIKAN: Mengubah dari 'center' ke 'flex-start' untuk meluruskan bagian atas */
+    gap: 5rem;
+    flex-wrap: wrap;
+}
+
+.about .row .image-col {
+    flex: 1 1 40rem;
+    text-align: center;
+}
+
+.about .row .image-col img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+}
+
+.about .row .content-col {
+    flex: 1 1 50rem;
+    /* Tambahan untuk merapikan alignment */
+    text-align: left; /* Menyesuaikan rata kiri */
+    display: flex; /* Menggunakan flexbox untuk penataan internal */
+    flex-direction: column; /* Susun elemen secara vertikal */
+}
+
+.about .row .content-col h3 {
+    font-size: 3.5rem; /* Ukuran untuk "Tentang Fahri Triandi:" */
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+/* Subtitle H3 untuk "Harmoninya Teknologi dan Alam" */
+.about .row .content-col h3 .subtitle-h3 {
+    font-size: 0.7em; /* Relatif terhadap font-size h3 induk */
+    display: block; /* Agar turun ke baris baru */
+    margin-top: 0.5rem; /* Jarak dari teks di atasnya */
+    color: var(--light-text-color);
+    font-weight: 400;
+}
+
+.about .row .content-col p {
+    font-size: 1.7rem;
+    color: var(--light-text-color);
+    margin-bottom: 3rem; /* Jarak antara paragraf dan block Keahlian Utama */
+}
+
+.about .row .content-col .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem; /* Jarak antar kotak skill */
+    margin-bottom: 2.5rem; /* Jarak antara blok skill dan tombol Unduh CV */
+    align-items: center; /* Untuk mensejajarkan h4 dengan skill item jika mereka dalam satu baris, meskipun h4 akan display: block */
+}
+
+.about .row .content-col .skills h4 {
+    width: 100%; /* Penting: Membuat "Keahlian Utama:" berada di barisnya sendiri */
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 1.2rem; /* Jarak antara judul skill dan kotak skill */
+    font-weight: 600; /* Agar judul "Keahlian Utama:" sedikit lebih tebal */
+}
+
+.about .row .content-col .skills .skill-item {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */ /* Opsional: tambahkan sedikit bayangan agar lebih menonjol */
+}
+
+/* Tombol Unduh CV di bagian About */
+.about .row .content-col .btn {
+    margin-top: 0; /* Menghilangkan margin-top default dari .btn global */
+    align-self: flex-start; /* Memastikan tombol rata kiri dalam flex container content-col */
+}
+
+/* Bagian Proyek (Projects) */
+.projects .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 3rem;
+}
+
+.projects .box-container .box {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    padding: 2.5rem;
+    text-align: center;
+    transition: var(--transition-speed);
+}
+
+.projects .box-container .box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.15);
+}
+
+.projects .box-container .box img {
+    width: 100%;
+    height: 200px; /* Tinggi gambar proyek tetap */
+    object-fit: cover; /* Pastikan gambar mengisi kotak tanpa terdistorsi */
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+}
+
+.projects .box-container .box h3 {
+    font-size: 2.2rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.projects .box-container .box p {
+    font-size: 1.5rem;
+    color: var(--light-text-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Bagian Kontak (Contact) */
+.contact form {
+    max-width: 70rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact form .inputBox {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.contact form .inputBox input {
+    width: 49%;
+}
+
+.contact form input,
+.contact form textarea {
+    padding: 1.5rem;
+    font-size: 1.7rem;
+    color: var(--text-color);
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 5px;
+    margin: 0.7rem 0;
+    background: var(--white);
+    resize: none;
+    width: 100%;
+}
+
+.contact form textarea {
+    height: 20rem;
+}
+
+.contact .social-links {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.contact .social-links a {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin: 0 1rem;
+    transition: var(--transition-speed);
+}
+
+.contact .social-links a:hover {
+    color: var(--secondary-color);
+    transform: translateY(-5px);
+}
+
+/* Footer */
+.footer {
+    background: var(--secondary-color);
+    padding: 3rem 0;
+    text-align: center;
+    color: var(--white);
+    font-size: 1.5rem;
+}
+
+/* --- FITUR TAMBAHAN YANG DIKEMBALIKAN --- */
+
+/* Tombol "Scroll ke Atas" */
+.scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 5rem;
+    height: 5rem;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 2rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.2);
+    display: none; /* Sembunyikan secara default */
+    z-index: 999;
+    transition: all var(--transition-speed);
+    /* Perbaikan untuk menengahkan ikon secara sempurna */
+    display: flex; /* Gunakan flexbox untuk menengahkan konten */
+    justify-content: center; /* Tengahkan horizontal */
+    align-items: center; /* Tengahkan vertikal */
+}
+
+.scroll-to-top:hover {
+    background: var(--secondary-color);
+    transform: translateY(-5px);
+}
+
+/* Tombol Media Sosial Mengambang */
+.floating-social-links {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.floating-social-links a {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    transition: all var(--transition-speed);
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.floating-social-links a:hover {
+    background: var(--secondary-color);
+    transform: translateX(-5px);
+}
+
+/* Media Queries untuk Responsivitas */
+@media (max-width: 991px) {
+    html {
+        font-size: 55%;
+    }
+    .header .container {
+        padding: 2rem;
+    }
+    section {
+        padding: 5rem 0;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu-btn {
+        display: block;
+    }
+    .header .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-top: .1rem solid rgba(0,0,0,.1);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: .4s ease-out;
+    }
+    .header .navbar.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    .header .navbar a {
+        display: block;
+        margin: 2rem;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .home .content {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .home .content .image-content {
+        margin-bottom: 3rem;
+    }
+    .home .content .text-content h1 {
+        font-size: 5rem;
+    }
+
+    .about .row {
+        flex-direction: column;
+    }
+    
+    /* Untuk mobile, jika ingin skill dan tombol rata tengah di about section */
+    .about .row .content-col {
+        align-items: center; /* Pusatkan konten horizontal */
+        text-align: center; /* Ratakan teks di tengah */
+    }
+    .about .row .content-col .skills h4 {
+        width: auto; /* Agar judul "Keahlian Utama:" tidak selalu 100% lebar di mobile, bisa menyesuaikan content */
+    }
+
+
+    .contact form .inputBox input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+    .heading {
+        font-size: 3.5rem;
+    }
+}
